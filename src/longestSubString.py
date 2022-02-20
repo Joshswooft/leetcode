@@ -1,4 +1,5 @@
 # Given a string s, find the length of the longest substring without repeating characters.
+# Difficulty: Medium
 
 # Contraints
 # 0 <= s.length <= 5 * 104
