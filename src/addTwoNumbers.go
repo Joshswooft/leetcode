@@ -31,7 +31,10 @@ func (l *ListNode) ToList() []int {
 }
 
 // addTwoNumbers takes in 2 linked lists. It adds the values up fom each linked list
+// each value in the linked list will be between 0 <= 9
+// if the sum of those values is greater than 10 then another linked list will need to be created
 // Note: initially i tried to a fully recursive solution but was fiddly when l1 and l2 lengths dont match
+// Difficulty: medium
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	carry := 0
 	dummyHead := &ListNode{Val: 0}
