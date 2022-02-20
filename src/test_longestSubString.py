@@ -32,5 +32,8 @@ class TestLongestSubString(unittest.TestCase):
         # wke
         self.do_test("pwwkew", 3)
 
+    def text_example_4(self):
+        self.do_test("a", 1)
+
 if __name__ == '__main__':
     unittest.main()

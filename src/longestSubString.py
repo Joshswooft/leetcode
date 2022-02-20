@@ -4,20 +4,18 @@
 # 0 <= s.length <= 5 * 104
 # s consists of English letters, digits, symbols and spaces.
 def longestSubString(s: str)->int:
+    # below code uses a sliding window approach
+    if len(s) == 1:
+        return 1
 
-# how to find the longest sub string which doesnt repeat?
-# i.e. abcabcbb
-# a -> b -> c
-# a -> b -> c -> a
-# a -> b -> c -> a -> b
-# a -> b -> c -> a -> b -> c (repeat detected)
-
-# use a sliding window approach
     # track the characters searched
     window_length = 0
     word_length = len(s)
+
+    # track the longest non-repeating sub-string
     max_repeat = 0
-    for i in range(word_length):
+
+    for _ in range(word_length):
         # we move the window along by one char
         # if we find a repeating char we note its position and slide the window along
         # we carry on until we reach the end of the string
@@ -30,7 +28,7 @@ def longestSubString(s: str)->int:
         for idx in range(start, word_length):
             key = s[idx]
             if w.get(key) != None:
-                # found a repeating char
+                # found a repeating char in dict
                 window_length = idx
                 if counter > max_repeat:
                     max_repeat = counter
