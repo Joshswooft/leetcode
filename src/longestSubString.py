@@ -4,40 +4,30 @@
 # 0 <= s.length <= 5 * 104
 # s consists of English letters, digits, symbols and spaces.
 # below code uses a sliding window approach
-# we move the window along by one char
-# if we find a repeating char we note its position and slide the window along
-# we carry on until we reach the end of the string
+# we move the end pointer along filling up the dictionary with char->index mappings and update the max sub-string length 
+# if more than current max
+# if we encounter a duplicate then we update the start position to be the index of the encountered duplicate +1
+# if the start pointer is infront of the end pointer then we increase the end pointer
 def longestSubString(s: str)->int:
     word_length = len(s)
 
     # track the longest non-repeating sub-string
-    max_repeat = 0
+    n = 0
 
     # pointers for the sliding window
     start = 0
+    end = 0
+    # dict used to store word occurance - used to find duplicates
+    w = {}
 
-    for _ in range(word_length):
+    while end < word_length:
 
-        # early exit
-        if start + max_repeat >= word_length:
-            return max_repeat
+        char = s[end]
+        if char not in w or start > w[char]:
+            w[char] = end
+            n = max(n, end - start + 1)
+            end = end + 1
+        else:
+            start = w[char] + 1
 
-        # dict used to store word occurance - used to find duplicates
-        w = {}
-        counter = 0
-        for idx in range(start, word_length):
-            key = s[idx]
-            if w.get(key) != None:
-                # found a repeating char in dict
-                # we move the start position to the next character along from the duplicate index
-                start = w.get(key) + 1
-                if counter > max_repeat:
-                    max_repeat = counter
-                break
-            else:
-                w[key] = idx
-            counter = counter+1
-            if counter > max_repeat:
-                max_repeat = counter
-
-    return max_repeat
+    return n
