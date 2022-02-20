@@ -6,7 +6,7 @@ class TestLongestSubString(unittest.TestCase):
 
 
     def do_test(self, s:str, expectedLength:int)->bool:
-        print("finding longest sub string: %s", s)
+        print("finding longest sub string: ", s)
         self.assertEqual(longestSubString(s), expectedLength)
 
 
@@ -34,6 +34,20 @@ class TestLongestSubString(unittest.TestCase):
 
     def text_example_4(self):
         self.do_test("a", 1)
+
+    def test_no_repeats(self):
+        self.do_test("au", 2)
+
+    def test_no_repeats_in_sub_word(self):
+        # ab
+        self.do_test("aab", 2)
+
+    def test_example_dvdf(self):
+        # vdf
+        # problem i have: it searches 'dvd' then will move on to 'df'
+        # how it should be: 'dv', 'vdf'
+        # how it is: 'dv', 'df'
+        self.do_test("dvdf", 3)
 
 if __name__ == '__main__':
     unittest.main()
