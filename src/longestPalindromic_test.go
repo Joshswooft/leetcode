@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
 func Test_longestPalindrome(t *testing.T) {
@@ -44,10 +45,12 @@ func Test_longestPalindrome(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			start := time.Now()
 			fmt.Println("test for: ", tt.args)
 			if got := longestPalindrome(tt.args); got != tt.want {
 				t.Errorf("longestPalindrome() = %v, want %v", got, tt.want)
 			}
+			fmt.Println("execution time: ", time.Since(start))
 		})
 	}
 }

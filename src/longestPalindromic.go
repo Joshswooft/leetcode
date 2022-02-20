@@ -19,7 +19,15 @@ func longestPalindrome(s string) string {
 	// from the 1st occurance to the 2nd occurance
 	// compare the string with reversed string
 	// if equal then add as max palindrome
+	// if not a palindrome we can check the sub string for any palindromes (this bit quite slow)
 	// advance end pointer
+
+	// the naive approach works however is quite inefficient
+	// we know the problem requires this repeated part for substring palindrome checking (recursion)
+	// where we need to check for palindromes from start:end where we move independently the start and end
+	// i.e. check substring = s[start:end] where start 1...n AND check substring = s[start:end] where end 1...n
+	// its clear that this problem can be broken into 2 parts so we can use dynamic programming (dp)
+	// note: where we can use recursion we can optimize it with dp
 
 	start := 0
 	l := len(s)
