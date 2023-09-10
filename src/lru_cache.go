@@ -124,10 +124,6 @@ func (l *DoubleLinkedList) Remove(node *DoubleLinkedListNode) {
 		return
 	}
 
-	if node == nil {
-		return
-	}
-
 	if node.Next != nil {
 		node.Next.Prev = node.Prev
 	}
