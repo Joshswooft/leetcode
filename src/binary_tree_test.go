@@ -55,3 +55,77 @@ func Test_inorderTraversal(t *testing.T) {
 		})
 	}
 }
+
+func Test_isSameTree(t *testing.T) {
+	type args struct {
+		p *TreeNode
+		q *TreeNode
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "same tree brah",
+			args: args{
+				p: nil,
+				q: nil,
+			},
+			want: true,
+		},
+		{
+			name: "who da fuq r u?",
+			args: args{
+				p: nil,
+				q: &TreeNode{
+					Val: 2,
+				},
+			},
+			want: false,
+		},
+		{
+			name: "1 of us",
+			args: args{
+				p: &TreeNode{
+					Val: 1,
+				},
+				q: &TreeNode{
+					Val: 1,
+				},
+			},
+			want: true,
+		},
+		{
+			name: "big same",
+			args: args{
+				p: &TreeNode{
+					Val: 1,
+					Left: &TreeNode{
+						Val: 2,
+					},
+					Right: &TreeNode{
+						Val: 3,
+					},
+				},
+				q: &TreeNode{
+					Val: 1,
+					Left: &TreeNode{
+						Val: 2,
+					},
+					Right: &TreeNode{
+						Val: 3,
+					},
+				},
+			},
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := isSameTree(tt.args.p, tt.args.q); got != tt.want {
+				t.Errorf("isSameTree() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
