@@ -57,3 +57,42 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 
 	return isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 }
+
+// checks whether the tree is a mirror of itself i.e. symmetric around it's center
+/*
+
+Example 1: Returns true
+
+     1
+  2     2
+3   4 4   3
+
+
+Example 2: Returns false
+
+       1
+    2     2
+	   3     3
+
+
+*/
+func isSymmetric(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	return isMirror(root.Left, root.Right)
+
+}
+
+func isMirror(p *TreeNode, q *TreeNode) bool {
+	if p == nil && q == nil {
+		return true
+	}
+
+	if p == nil || q == nil || p.Val != q.Val {
+		return false
+	}
+
+	return isMirror(p.Left, q.Right) && isMirror(p.Right, q.Left)
+}
